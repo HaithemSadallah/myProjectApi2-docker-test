@@ -1,0 +1,44 @@
+services:
+  db:
+    container_name: postgres_c
+    image: postgres:16.1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: django_api
+      PGDATA: /data/django_api
+    ports:
+      - "5432:5432"
+    restart: always
+
+  app:
+    # build:
+    #   context: ./auth
+    #   dockerfile: ./auth/Dockerfile
+    image: haitham/docker-python:latest
+    container_name: backend
+    # environment:
+    #   DB_HOST: db
+    #   DB_NAME: django_api
+    #   DB_USER: postgres
+    #   DB_PASSWORD: 1234
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+    links:
+      - db
+  pgadmin:
+     container_name: pgadmin_container
+     image: dpage/pgadmin4
+     environment:
+        PGADMIN_DEFAULT_EMAIL: root@root.com  # Set your email here
+        PGADMIN_DEFAULT_PASSWORD: root
+     ports:
+       - "5050:80"
+     restart: always
+     depends_on:
+       - db
+
+
+    
