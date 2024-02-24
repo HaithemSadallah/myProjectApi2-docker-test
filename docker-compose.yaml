@@ -17,11 +17,11 @@ services:
     #   dockerfile: ./auth/Dockerfile
     image: haitham/docker-python:latest
     container_name: backend
-    # environment:
-    #   DB_HOST: db
-    #   DB_NAME: django_api
-    #   DB_USER: postgres
-    #   DB_PASSWORD: 1234
+    environment:
+      DB_HOST: db
+      DB_NAME: django_api
+      DB_USER: postgres
+      DB_PASSWORD: 1234
     ports:
       - "8001:8000"
     depends_on:
