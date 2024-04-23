@@ -1,0 +1,12 @@
+secretGenerator:
+  - name: db-password
+    literals:
+      - password=1234  # Modify this to match your PostgreSQL password
+  - name: django
+    literals:
+      - secret=secretkey123  # Modify this to match your Django secret key
+resources:
+  - postgres.yaml
+  - django.yaml
+  - pgadmin-deployment.yaml
+  - pgadmin-service.yaml
